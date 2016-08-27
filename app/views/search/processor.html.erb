@@ -1,0 +1,5 @@
+<h1>Results</h1>
+<% @results.each do |res| %>
+<p><%= res.css('.detLink')[0].text %></p>
+<a href="<%= res.css('.detName+ a')[0]['href'].strip %>">Magnet Link</a>
+<% end %>
