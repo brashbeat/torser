@@ -1,14 +1,1 @@
-<div class="engine-result">
-<p class="heading-main">Torser</p>
-<%= form_tag('/search/processor') do %>
-<p><%= search_field_tag('query', @query) %></p>
-<%= submit_tag('Search') %>
-<% end %>
-</div>
-<h1>Results</h1>
-<br>
-<p class="nav-link"><%= link_to 'Next Page>>', { controller: 'search', action: 'next' } %></p>
-<% @results.each do |res| %>
-<p><%= res.css('.detLink')[0].text %></p>
-<a href="<%= res.css('.detName+ a')[0]['href'].strip %>">Magnet Link</a>
-<% end %>
+
