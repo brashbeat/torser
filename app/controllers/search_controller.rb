@@ -38,8 +38,7 @@ require 'mechanize'
       @page = @agent.submit(@form)
     # @address = "https://thepiratebay.org/search/#{@query}/0/99/0" 
     # @base = Nokogiri::HTML(open(@address, :ssl_verify_mode => OpenSSL::SSL::VERIFY_NONE))
-      @results = @page.css('.vertTh+ td')
-      @info = @page.css('.vertTh~ td+ td')
+      @results = @page.xpath("//table[contains(@id, 'searchResult')]/tr[not(@class='header')]")
       @link = @page.css('#main-content+ div a')[0]['href']
       session[:link] = "https://thepiratebay.org" + @link.strip.downcase
       
@@ -52,7 +51,7 @@ require 'mechanize'
       @info = @page.css('.vertTh~ td+ td')
       @link = @page.css('#main-content+ div a')[@pid.to_i]['href']
       session[:link] = "https://thepiratebay.org" + @link.strip.downcase
-      @results = @page.css('.vertTh+ td')
+      @results = @page.xpath("//table[contains(@id, 'searchResult')]/tr[not(@class='header')]")
     else  
     redirect_to '/'
     end

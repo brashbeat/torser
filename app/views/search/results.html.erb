@@ -8,7 +8,11 @@
 <h1>Results</h1>
 <br>
 <p class="nav-link"><%= link_to_if(@pid >= '2', '<<Previous Page', page_path(@pid.to_i - 1)) %>&nbsp;&nbsp;<%= link_to 'Next Page>>', page_path(@pid.to_i + 1) %></p>
-<% @results.each do |res| %>
-<p><%= res.css('.detLink')[0].text %></p>
-<a href="<%= res.css('.detName+ a')[0]['href'].strip %>">Magnet Link</a>
+
+<% @results.each do |result, info| %>
+<% info = result.xpath("td[not(@class='vertTh')]") %>
+<div style="border:solid 2px ; border-radius:4px;">
+<p><%= info[0].css('a.detLink')[0]['title'].gsub('Details for', "").strip %></p>
+<p>Info: <%= info[0].css('font.detDesc')[0].text %>&nbsp;&nbsp;<a href="<%= info[0].css('.detName+ a')[0]['href'] %>">Magnet Link</a>&nbsp;&nbsp;Seeders: <%= info[1].text %>&nbsp;&nbsp;Leechers: <%= info[2].text %></p>
+</div>
 <% end %>
