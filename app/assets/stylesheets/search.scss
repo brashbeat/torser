@@ -1,11 +1,54 @@
 // Place all the styles related to the Search controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
 .engine-main {     text-align: center;
     margin-top: 200px; }
     
 .subhead-main   { color: #607D8B ;}
 
-.engine-result { display: inline ;}
+.engine-result { margin-left: 20px ;}
 
-.nav-link { text-align: center ; }
+.heading-result { font-size: 25px;
+                  margin-bottom: 5px ; }
+
+.nav-bar { width: 80%;
+           margin-left: auto;
+           margin-right: auto;
+           margin-bottom: 5px; }
+
+#result-h1 { display: inline-block;
+             color: #4CAF50;
+             font-size: 25px;
+             margin-bottom: 0px;
+             font-family: Footlight MT Light;
+             padding-left: 5px; }
+
+#nav-link { display: inline-block;
+            margin-left: 32%;
+            margin-bottom: 0px; }
+
+.result-row { border:solid 2px ; 
+              border-radius:4px; 
+              padding-left: 10px; 
+              background-color: rgba(136, 179, 49, 0.78) ; }
+              
+#mag-link { float: right;
+            margin-right: 5px;
+            padding: 5px;
+            text-decoration: none;
+            color: #ffeded;
+            font-size: 20px;
+            border-radius: 10px;
+            border: outset 2px;
+            background-color: rgba(122, 155, 181, 0.7) ; }              
+
+.result-block { width:80% ; margin-left:auto ; margin-right: auto ; }
+
+#tor-info { border-radius: 4px;
+            padding: 2px;
+            background-color: #9cb77c ; }
+
+#peer-stats { border-radius: 4px;
+              padding: 2px;
+              background-color: rgb(182, 220, 138) ; }            
