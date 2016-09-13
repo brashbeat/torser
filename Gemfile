@@ -26,6 +26,7 @@ gem 'jbuilder', '~> 2.5'
 # gem 'bcrypt', '~> 3.1.7'
 gem 'nokogiri'
 gem 'mechanize'
+gem 'parallel'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 

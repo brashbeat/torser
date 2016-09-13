@@ -2,6 +2,8 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+@import 'https://fonts.googleapis.com/css?family=Yatra+One';
+
 .engine-main {     text-align: center;
     margin-top: 200px; }
     
@@ -9,8 +11,16 @@
 
 .engine-result { margin-left: 20px ;}
 
-.heading-result { font-size: 25px;
-                  margin-bottom: 5px ; }
+.heading-main { font-family: 'Yatra One', cursive;
+                font-size: 40px;
+                color: #11e4e4; }
+
+.heading-result { font-size: 35px;
+                  margin-bottom: 5px ;
+                  font-family: 'Yatra One', cursive; }
+
+.logo-link { text-decoration: none ;
+             color: #545b5f; }
 
 .nav-bar { width: 80%;
            margin-left: auto;

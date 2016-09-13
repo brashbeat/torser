@@ -1,0 +1,44 @@
+<div class="engine-result">
+<h3 class="heading-result"><a href='/' title="Torser" class="logo-link">&#2335;orser</a></h3>
+<%= form_tag('/search/processor') do %>
+<%= search_field_tag('query', @query) %>&nbsp;&nbsp;<%= select_tag(:scope, options_for_select([['All', 1], ['The Pirate Bay', 2],['YTS', 3]], @scope.to_i)) %>&nbsp;&nbsp;<%= submit_tag('Search') %>
+<% @checked = true if @anon %> 
+<p><%= check_box_tag(:anonymous, @anon , @checked) %>
+<%= label_tag(:anonymous, "Check for anonymous surfing") %></p>
+<% end %>
+</div>
+<br>
+<hr>
+<br>
+
+<!-- <%# <div class="nav-bar"><p id="result-h1">Results</p><p id="nav-link"><%= link_to_if(@pid >= '2', '<<Previous Page', pageYTS_path(@pid.to_i - 1)) %>&nbsp;&nbsp;<%= link_to 'Next Page>>', pageYTS_path(@pid.to_i + 1) %></p></div> %> -->
+
+<div class="result-block">
+<% @results.each do |result| %>
+<% info = result.xpath("td[not(@class='vertTh')]") %>
+<div class="result-row">
+<% @torrentName = info[0].css('a.detLink')[0]['title'].gsub('Details for', "").strip %>
+<% @torrentUrl = "https://thepiratebay.org" << info[0].css('a.detLink')[0]['href'] unless @anon %>
+<p><%= link_to_unless(@anon, @torrentName, @torrentUrl) %>&nbsp;&nbsp;<a id="mag-link" href="<%= info[0].css('.detName+ a')[0]['href'] %>">Magnet Link</a></p> 
+
+<p><span id="tor-info"><%= info[0].css('font.detDesc')[0].text %></span>&nbsp;&nbsp;<span id="peer-stats">Seeders: <%= info[1].text %>&nbsp;&nbsp;Leechers: <%= info[2].text %></span></p>
+</div>
+<% end %>
+</div>
+<% if @page_hash['data']['movies'] %>
+<div class="result-block">
+<% @page_hash['data']['movies'].each do |res| %>
+<% @torrentName = res['title'] %>
+<% @torrentUrl = res['url'] %>
+<div class="result-row">
+<% res['torrents'].each do |info| %>
+<% @infoHash = info['hash'] %>
+<% @magnet = "magnet:?xt=urn:btih:#{@infoHash}&dn=Url+Encoded+Movie+Name&tr=http://track.one:1234/announce&tr=udp://track.two:80&tr=udp://open.demonii.com:1337/announce&tr=udp://tracker.openbittorrent.com:80&tr=udp://tracker.coppersurfer.tk:6969&tr=udp://glotorrents.pw:6969/announce&tr=udp://tracker.opentrackr.org:1337/announce&tr=udp://torrent.gresille.org:80/announce&tr=udp://p4p.arenabg.com:1337&tr=udp://tracker.leechers-paradise.org:6969" %>
+
+<p><%= link_to_unless(@anon, @torrentName, @torrentUrl) %>&nbsp;&nbsp;<a id="mag-link" href="<%= @magnet %>">Magnet Link</a><%= info['quality'] %></p>
+<p><span id="tor-info"><%= "Uploaded: " + info['date_uploaded'] + " Size: " + info['size']  %></span>&nbsp;&nbsp;<span id="peer-stats">Seeders: <%= info['seeds'] %>&nbsp;&nbsp;Peers: <%= info['peers'] %></span></p>
+<% end %>
+</div>
+<% end %>
+</div>
+<% end %>
