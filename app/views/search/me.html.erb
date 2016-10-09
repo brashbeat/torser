@@ -1,0 +1,24 @@
+<div style="margin: 10px ;">
+<p style="text-align: center">Back to <%= link_to "Home", '/' %></p>    
+<h2>What?</h2>
+<p>Torser is simply a crawler that lets you search and get magnet links from, The Pirate Bay(TPB), Yify Torrents(YTS) and ExtraTorrent in real time. I plan to add more.</p>
+<h2>Why?</h2>
+<p>To give folks easy access to what's already out there. Nothing is being indexed or uploaded by users here.</p>
+<h2>Who?</h2>
+<p> logwolvy = digest(my_real_name) # that's all you need to know!</p>
+<h2>How?</h2>
+<p>Built on Rails, yeah! pretty unusual but immensely interesting.</p>
+<h2>Contributors</h2>
+<p>Me && Special thanks to 'The Pirate Bay', YTS(they actually provide an API, that was great!) and 'ExtraTorrents' for creating and maintaining such services, and not blocking my server ips for crawling without permission! I would love to collaborate on this project for further development and maintenance. Let's roll!</p>
+<br>
+<div style="float:right; margin-right: 50px;">
+<h2>Feedback and Complaints</h2>
+<%= form_tag('/search/feedform') do %>
+<p><%= text_field_tag(:email, nil , {:placeholder => "Your Email", :required => true }) %></p>
+<p><%= text_area_tag(:message, nil , {:placeholder => "Enter your feedback or complaint here..", :size => "45x10" , :required => true}) %></p>
+<p><%= submit_tag("Submit") %></p>
+<% end %>
+<%= flash[:thanks] if flash[:thanks] %>
+</div>
+<div style="float: left ; margin-left: 20px; margin-bottom: 10px ;"><%= image_tag 'me.jpeg' %><p style="text-align: center ; margin-top: 5px ;">usually unusual me!</p></div>
+</div>

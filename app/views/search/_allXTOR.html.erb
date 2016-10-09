@@ -1,0 +1,14 @@
+<div class="result-block" id="xtor-block">
+<% @results.each do |res| %>
+    <% @torrentName = res.css('title')[0].text %>
+    <% @torrentUrl = res.css('link')[0].text %>
+    <% @infoHash =  res.css('info_hash')[0].text %>
+    <% @magnet = "magnet:?xt=urn:btih:#{@infoHash}&dn=Url+Encoded+Movie+Name&tr=http://track.one:1234/announce&tr=udp://track.two:80&tr=udp://open.demonii.com:1337/announce&tr=udp://tracker.openbittorrent.com:80&tr=udp://tracker.coppersurfer.tk:6969&tr=udp://glotorrents.pw:6969/announce&tr=udp://tracker.opentrackr.org:1337/announce&tr=udp://torrent.gresille.org:80/announce&tr=udp://p4p.arenabg.com:1337&tr=udp://tracker.leechers-paradise.org:6969&tr=http://9.rarbg.com:2710/announce&tr=http://announce.torrentsmd.com:6969/announce&tr=http://bt.careland.com.cn:6969/announce&tr=http://explodie.org:6969/announce&tr=http://mgtracker.org:2710/announce&tr=http://tracker.tfile.me/announce&tr=http://tracker.torrenty.org:6969/announce&tr=http://tracker.trackerfix.com/announce&tr=http://www.mvgroup.org:2710/announce&tr=udp://9.rarbg.com:2710/announce&tr=udp://9.rarbg.me:2710/announce&tr=udp://9.rarbg.to:2710/announce&tr=udp://coppersurfer.tk:6969/announce&tr=udp://exodus.desync.com:6969/announce&tr=udp://glotorrents.pw:6969/announce&tr=udp://open.demonii.com:1337/announce&tr=udp://tracker.coppersurfer.tk:6969/announce&tr=udp://tracker.glotorrents.com:6969/announce&tr=udp://tracker.leechers-paradise.org:6969/announce&tr=udp://tracker.openbittorrent.com:80/announce&tr=udp://tracker.opentrackr.org:1337/announce&tr=udp://tracker.publicbt.com:80/announce&tr=udp://tracker4.piratux.com:6969/announce" %>
+
+    <div class="result-row">
+
+    <p><%= link_to_unless(@anon, @torrentName, @torrentUrl) %>&nbsp;&nbsp;<a id="mag-link" href="<%= @magnet %>">Magnet Link</a></p>
+    <p><span id="tor-info"><%= "Uploaded: " + res.css('pubDate')[0].text.to_s.gsub('+0000',"") + " Size: " + res.css('size')[0].text.strip.to_i./(1000000).to_s + ' MB'  %></span>&nbsp;&nbsp;<span id="peer-stats">Seeders: <%= res.css('seeders')[0].text %>&nbsp;&nbsp;Leechers: <%= res.css('leechers')[0].text %></span></p>
+    </div>
+    <% end %>
+</div>

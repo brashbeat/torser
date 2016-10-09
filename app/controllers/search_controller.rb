@@ -4,6 +4,7 @@ require 'open-uri'
 require 'openssl'
 require 'mechanize'
 require 'parallel'
+require 'rss'
 
   
   def index
@@ -16,6 +17,7 @@ require 'parallel'
     redirect_to '/results/all/1' if params[:scope] == '1'
     redirect_to '/results/tpb/1' if params[:scope] == '2'
     redirect_to '/results/yts/1' if params[:scope] == '3'
+    redirect_to '/results/extor/1' if params[:scope] == '4'
   end
   
   def resultsTPB
@@ -74,7 +76,7 @@ require 'parallel'
     
     ###### parsing next page navigation link and saving that to session  
       
-      @link = @page.css('#main-content+ div a')[@pid.to_i]['href']
+      @link = @page.css('#main-content+ div a')[@pid.to_i]['href'] ||= "sorry"
       session[:link] = "https://thepiratebay.org" + @link.strip.downcase
     
     ######  parsing results from fetched page
@@ -108,6 +110,30 @@ require 'parallel'
     end
   end
   
+  def resultsXTOR
+    ###### assigning user's anonymous setting from session
+    
+    @anon = session[:anonymous]
+    
+    ###### assigning user's search scope setting from session 
+    
+    @scope = session[:scope]
+    
+    ###### checks if user is searching for the first time(session) or not #######
+    
+    if session[:squery] # && params[:pid] == '1'
+      # @pid = params[:pid]
+      @query = session[:squery]
+      @page = Nokogiri::XML(open("https://extratorrent.cc/rss.xml?type=search&search=#{@query}")) 
+    #  @rss = RSS::Parser.parse(@page)
+      @results = @page.xpath('//item')
+      
+    else  
+    redirect_to '/' and return
+    end
+    
+  end  
+  
   def all
     ###### assigning user's anonymous setting from session
     
@@ -118,20 +144,10 @@ require 'parallel'
     @scope = session[:scope]
   
     ##### checks if user is searching for the first time(session)  
-   if session[:squery] && params[:pid] == '1'
       @pid = params[:pid]
       @query = session[:squery]
-   ###################################### 
-   arr = []
    
-   arr << Thread.new { 
-      @page = Nokogiri::HTML(open("https://yts.ag/api/v2/list_movies.json?query_term=#{@query}&limit=50")) 
-      @page_hash = JSON.parse @page 
-     }
-   
-   arr << Thread.new { 
-      
-    ###### creating mechanize object
+   ###### creating mechanize object
     
       @agent = Mechanize.new
     
@@ -150,15 +166,58 @@ require 'parallel'
     
     ######  parsing results from fetched page
       @results = @page.xpath("//table[contains(@id, 'searchResult')]/tr[not(@class='header')]")
-   }
-   Parallel.map(arr, in_threads: 2) do |t|
-   t.join
-   end  
-    else
-  redirect_to '/' and return
-   end    
+      
   end
   
+  def ytsall
+    @query = session[:squery]
+    @page = Nokogiri::HTML(open("https://yts.ag/api/v2/list_movies.json?query_term=#{@query}&limit=50")) 
+    @page_hash = JSON.parse @page
+    respond_to do |format|
+    format.js
+    end
+  end
   
+  def tpball
+    render "all"
+  end 
+  
+  def xtorall
+    ###### assigning user's anonymous setting from session
+    
+    @anon = session[:anonymous]
+    
+    ###### assigning user's search scope setting from session 
+    
+    @scope = session[:scope]
+    
+    ###### checks if user is searching for the first time(session) or not #######
+    
+    if session[:squery] # && params[:pid] == '1'
+      # @pid = params[:pid]
+      @query = session[:squery]
+      @page = Nokogiri::XML(open("https://extratorrent.cc/rss.xml?type=search&search=#{@query}")) 
+    #  @rss = RSS::Parser.parse(@page)
+      @results = @page.xpath('//item')
+    else  
+    redirect_to '/' and return
+    end
+    
+    respond_to do |format|
+      format.js
+    end
+  end
+  
+  def me
+  end
+    
+  def feedform
+      @user_mail = params[:email]
+      @body = params[:message]
+      NotifierMailer.feedback(@user_mail, @body).deliver_later
+      flash[:thanks] = "Thank you, your message has been successfully sent!"
+      redirect_to '/me'  
+  end
   
 end
+

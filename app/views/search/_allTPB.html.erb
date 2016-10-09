@@ -1,10 +1,5 @@
-<%= render partial: "searchBar" %> 
-<br>
-<hr>
-<br>
+<div class="result-block" id="tpb-block">
 
-<div class="nav-bar"><p id="result-h1">Results</p><p id="nav-link"><%= link_to_if(@pid >= '2', '<<Previous Page', pageTPB_path(@pid.to_i - 1)) %>&nbsp;&nbsp;<%= link_to 'Next Page>>', pageTPB_path(@pid.to_i + 1) %></p></div>
-<div class="result-block">
 <% @results.each do |result| %>
 <% info = result.xpath("td[not(@class='vertTh')]") %>
 <div class="result-row">

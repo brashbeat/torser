@@ -1,12 +1,4 @@
-<div class="engine-result">
-<h3 class="heading-result"><a href='/' title="Torser" class="logo-link">&#2335;orser</a></h3>
-<%= form_tag('/search/processor') do %>
-<%= search_field_tag('query', @query) %>&nbsp;&nbsp;<%= select_tag(:scope, options_for_select([['All', 1], ['The Pirate Bay', 2],['YTS', 3]], @scope.to_i)) %>&nbsp;&nbsp;<%= submit_tag('Search') %>
-<% @checked = true if @anon %> 
-<p><%= check_box_tag(:anonymous, @anon , @checked) %>
-<%= label_tag(:anonymous, "Check for anonymous surfing") %></p>
-<% end %>
-</div>
+<%= render partial: "searchBar" %>
 <br>
 <hr>
 <br>

@@ -2,9 +2,11 @@
 <h1 class="heading-main" title="Torser">&#2335;orser</h1>
 <h4 class="subhead-main">Torrent Search Engine</h4>
 <%= form_tag('/search/processor') do %>
-<p><%= search_field_tag('query') %>&nbsp;&nbsp;<%= select_tag(:scope, options_for_select([['All', 1], ['The Pirate Bay', 2],['YTS', 3]], 1)) %></p>
+<p><%= search_field_tag('query') %>&nbsp;&nbsp;<%= select_tag(:scope, options_for_select([['All', 1], ['The Pirate Bay', 2],['YTS', 3],['ExtraTorrent', 4]], 1)) %></p>
 <p><%= check_box_tag(:anonymous) %>
 <%= label_tag(:anonymous, "Check for anonymous surfing") %></p>
 <p><%= submit_tag('Search') %></p>
 <% end %>
 </div>
+<br><br><br><br><br><br><br>
+<p style="text-align: center;"><%= link_to "About Torser", '/me', id: 'footer-link' %></p>

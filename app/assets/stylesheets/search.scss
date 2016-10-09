@@ -13,7 +13,12 @@
 
 .heading-main { font-family: 'Yatra One', cursive;
                 font-size: 40px;
-                color: #11e4e4; }
+                color: #90d0d0;
+                width:50% ; 
+                margin-left: auto ;
+                margin-right: auto ;
+                margin-bottom: 0px ;
+            }
 
 .heading-result { font-size: 35px;
                   margin-bottom: 5px ;
@@ -61,4 +66,16 @@
 
 #peer-stats { border-radius: 4px;
               padding: 2px;
-              background-color: rgb(182, 220, 138) ; }            
+              background-color: rgb(182, 220, 138) ; }
+              
+p.tabs-bar { text-align: center; }
+
+a.tab {     text-decoration: none;
+            border: solid;
+            border-radius: 5px;
+            padding: 2px;
+            color: #0b88c3;  }
+            
+#tpb-link { color: grey; }
+
+a#footer-link { color: #607d8b; }
