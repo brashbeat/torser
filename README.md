@@ -1,2 +1,2 @@
-# torser
-Scrapes search results from tpb, yts and extratorrent
+# Torser
+Scrapes search results from TPB, YTS and extratorrent. Uses 'nokogiri' and 'mechanize' primarily. 
