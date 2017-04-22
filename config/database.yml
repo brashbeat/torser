@@ -1,13 +1,3 @@
-default: &default
-  adapter: postgresql
-  encoding: unicode
-  # For details on connection pooling, see rails configuration guide
-  # http://guides.rubyonrails.org/configuring.html#database-pooling
-  pool: 1
-  host: localhost
-  username: rails
-  password: just_good_to_have_it
-
 development:
   adapter: postgresql
   encoding: unicode
@@ -25,8 +15,3 @@ test:
   username: ubuntu    
   password: qwerty
 
-production:
-  <<: *default
-  database: torser_production
-  username: rails
-  password: just_good_to_have_it
