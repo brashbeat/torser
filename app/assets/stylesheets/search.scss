@@ -4,8 +4,19 @@
 
 @import 'https://fonts.googleapis.com/css?family=Yatra+One';
 
+#ajaxloader {
+  display: none;
+  position: relative;
+  left: 50%;
+  padding-bottom: 1%;
+}
+
 .engine-main {     text-align: center;
-    margin-top: 200px; }
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 45%; 
+}
     
 .subhead-main   { color: #607D8B ;}
 
