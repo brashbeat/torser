@@ -45,13 +45,12 @@ require 'rss'
     if session[:agent]
       @agent.user_agent_alias = session[:agent] 
     else
-      @uagent = Mechanize::AGENT_ALIASES.keys - ["Mechanize","Windows IE 7","Windows IE 6"]
-      @uagent = @uagent.sample
+      @uagent = ["Windows Chrome", "Windows Mozilla", "Windows Firefox"].sample
       @agent.user_agent_alias , session[:agent] = @uagent , @uagent
     end  
     
     ###### fetching search page, parsing form and assigning values to form fields
-    p  @page = @agent.get('https://thepiratebay.org')
+      @page = @agent.get('https://thepiratebay.org')
       @form = @page.form('q')
       @form.q = @query
     
@@ -156,8 +155,7 @@ require 'rss'
     if session[:agent]
       @agent.user_agent_alias = session[:agent] 
     else
-      @uagent = Mechanize::AGENT_ALIASES.keys - ["Mechanize","Windows IE 7","Windows IE 6"]
-      @uagent = @uagent.sample
+      @uagent = ["Windows Chrome", "Windows Mozilla", "Windows Firefox"].sample
       @agent.user_agent_alias , session[:agent] = @uagent , @uagent
     end  
     
