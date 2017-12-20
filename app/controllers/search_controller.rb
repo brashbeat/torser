@@ -6,7 +6,7 @@ class SearchController < ApplicationController
   RESULT_LIST_MAPPING = { '1' => 'resultsTPB', '2' => 'resultsYTS', '3' => 'resultsXTOR' }.freeze
   
   def results
-    @query = params[:query].strip.downcase
+    @query = CGI.escape(params[:query].strip.downcase)
     @scope = params[:scope]
     RESULT_LIST_MAPPING[@scope]
     @results = ResultScraper.send(RESULT_LIST_MAPPING[@scope], @query)

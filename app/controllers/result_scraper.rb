@@ -3,8 +3,9 @@ require 'nokogiri'
 
 module ResultScraper
 
-  def self.resultsTPB(query)
-      page = Nokogiri::HTML(RestClient.get("https://thepiratebay.org/s/?q=#{query}&category=0&page=0&orderby=99").body)
+  	def self.resultsTPB(query)
+      page = Nokogiri::HTML(RestClient.get("https://thepiratebay.org/s/", 
+      		{params: {'q' => query, 'page' => '0', 'orderby' => '99'}}).body)
       page.xpath("//table[contains(@id, 'searchResult')]/tr[not(@class='header')]")
 	end
 
