@@ -1,12 +1,12 @@
 # Torser
 
-[![Torser](https://cldup.com/dTxpPi9lDf.thumb.png)](https://torser.in)
+[![Torser](https://s3.amazonaws.com/aws-website-resume-amulaya-kh8y5/torser_logo.png)](https://torser.in)
 
 Torser is a metasearch engine built on Rails 5.1 and uses Ruby's HTML parsing libraries to scrape search results from torrent portals and formats them as magnet links. It currently scrapes -
 
   - [thepiratebay](https://thepiratebay.org)
   - [yifytorrents](https://yts.ag)
-  - [extratorrent](https://extratorrent.cc) (permanent shutdown feb '17)
+  - [extratorrent](https://extratorrent.cc) (update May '17: permanently shutdown)
 
 ## Setup (development env)
  ```sh
