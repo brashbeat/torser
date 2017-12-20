@@ -4,6 +4,6 @@ class NotifierMailer < ApplicationMailer
     def feedback(user = "", message = "")
         @user_email = user
         @message_body = message
-        mail(to: 'rohankapur@mail.com', subject: "#{@user_email} from Torser")
+        mail(to: CONFIG[:to_address], subject: "#{@user_email} from Torser")
     end
 end
