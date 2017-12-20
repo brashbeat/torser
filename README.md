@@ -13,7 +13,7 @@ Torser is a metasearch engine built on Rails 5.1 and uses Ruby's HTML parsing li
   git clone https://github.com/logwolvy/torser.git && cd torser
   bundle install --without production
   bundle exec rake assets:precompile db:create db:migrate RAILS_ENV=production
-  bundle exec rake gen_config #generates dummy mail server credentials
+  bundle exec rake gen_mail_config #generates dummy mail server credentials
   bundle exec rails s      
  ```
 ### Contribute
