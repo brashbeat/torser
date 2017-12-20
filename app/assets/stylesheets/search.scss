@@ -87,6 +87,10 @@ a.tab {     text-decoration: none;
             padding: 2px;
             color: #0b88c3;  }
             
-#tpb-link { color: grey; }
-
 a#footer-link { color: #607d8b; }
+
+.disabled {
+        pointer-events: none;
+        cursor: default;
+        opacity: 0.6;
+}

@@ -1,0 +1,4 @@
+$('#res-block').empty();
+$('.tabs-bar').empty();
+$('.tabs-bar').append("<%= j render partial: 'tabs-bar' %>");
+document.getElementById('res-block').innerHTML = "<%= j render partial: @template %>";

@@ -62,13 +62,13 @@ Rails.application.configure do
   # config.action_mailer.raise_delivery_errors = false
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
-    address:              'smtp.mailgun.org',
+    address:              CONFIG[:address],
     port:                 587,
-    domain:               'sandbox7896cc2b576a4f1e81c9f84587964832.mailgun.org',
-    user_name:            'postmaster@sandbox7896cc2b576a4f1e81c9f84587964832.mailgun.org',
-    password:             '30d0d1f457439ce533e95e5c1caa2e7e',
-    authentication:       'login',
-    enable_starttls_auto:  true 
+    domain:               CONFIG[:domain],
+    user_name:            CONFIG[:user_name],
+    password:             CONFIG[:password],
+    authentication:       CONFIG[:authentication],
+    enable_starttls_auto: CONFIG[:enable_starttls_auto] 
   }
 
   # Enable locale fallbacks for I18n (makes lookups for any locale fall back to

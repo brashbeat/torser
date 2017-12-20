@@ -1,10 +1,12 @@
 require_relative 'boot'
 
 require 'rails/all'
-
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
+CONFIG = JSON.parse(File.read(File.expand_path('../mail_config.json', __FILE__)))
+CONFIG.merge! CONFIG.fetch(Rails.env, {})
+CONFIG.symbolize_keys!
 
 module Torser
   class Application < Rails::Application

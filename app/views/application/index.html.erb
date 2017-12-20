@@ -1,0 +1,17 @@
+<div id='home-page' class="engine-main">
+<h1 class="heading-main" title="Torser">&#2335;orser</h1>
+<h4 class="subhead-main">Torrent Search Engine</h4>
+<%= form_tag('/search/results', id: 'home-search-form', remote: true) do %>
+<p><%= search_field_tag('query') %>&nbsp;&nbsp;<%= select_tag(:scope, 
+options_for_select([['The Pirate Bay', 1],['YTS', 2],['ExtraTorrent', 3]], 1)) %></p>
+<p><%= submit_tag('Search') %></p>
+<% end %>
+</div>
+
+<%= render partial: "resultsPage" %>
+
+<p style="position: absolute;
+    bottom: 2px;
+    text-align: center;
+    left: 0;
+    right: 0;"><%= link_to "About Torser", '/me', id: 'footer-link' %></p>

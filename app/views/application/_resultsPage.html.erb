@@ -1,0 +1,14 @@
+<div id="results-page" style="display: none;">
+	<div class="engine-result">
+	<h3 class="heading-result"><a href='/' title="Torser" class="logo-link">&#2335;orser</a></h3>
+	<%= form_tag('/search/results', remote: true) do %>
+	<%= search_field_tag('query', @query) %>&nbsp;&nbsp;<%= select_tag(:scope, options_for_select([['The Pirate Bay', 1],['YTS', 2],['ExtraTorrent', 3]], @scope)) %>&nbsp;&nbsp;<%= submit_tag('Search', id: 'search-btn') %>
+	<% end %>
+	</div>
+	<%= image_tag("ajax-loader.gif", id: 'ajaxloader' ) %>
+	<br>
+	<hr>
+	<br>
+	<p class="tabs-bar"><%= link_to "TPB", "/search/results", :remote => true, id: "tpb-link", class: "tab", data: { params: "scope=1" } %>&nbsp;&nbsp;<%= link_to "YTS", "/search/results", :remote => true , id: "yts-link", class: "tab", data: { params: "scope=2" }  %>&nbsp;&nbsp;<%= link_to "ExtraTorrent", "/search/results", :remote => true, id: "xtor-link", class: "tab", data: { params: "scope=3" } %></p>
+	<div id="res-block"></div>
+</div>

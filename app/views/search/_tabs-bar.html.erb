@@ -1,0 +1,4 @@
+<%= link_to "TPB", "/search/results", :remote => true, id: "tpb-link", class: "tab", data: { params: "scope=1&query=#{@query}" } %>&nbsp;&nbsp;
+<%= link_to "YTS", "/search/results", :remote => true , id: "yts-link", class: "tab", data: { params: "scope=2&query=#{@query}" }  %>&nbsp;&nbsp;
+<%= link_to "ExtraTorrent", "/search/results", :remote => true, id: "xtor-link", class: "tab", data: { params: "scope=3&query=#{@query}" } %>
+	

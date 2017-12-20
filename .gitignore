@@ -19,3 +19,6 @@
 
 # Ignore Byebug command history file.
 .byebug_history
+
+# Ignoring mail_config.yml
+/config/mail_config.json

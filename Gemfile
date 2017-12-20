@@ -23,8 +23,8 @@ gem 'jbuilder', '~> 2.5'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 gem 'nokogiri'
-gem 'mechanize'
-gem 'parallel'
+# Rest Client 
+gem 'rest-client', '~> 2.0', '>= 2.0.2'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 # postgres adapter
@@ -52,5 +52,5 @@ end
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 group :production do
-  gem 'unicorn'
+  # gem 'unicorn'
 end
